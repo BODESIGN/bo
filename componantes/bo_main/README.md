@@ -2,10 +2,10 @@
 
 > utilisation
 mainBo(isHaveLoading: false, title: 'AMOI')
-      ..initialRoot = '/home'
+      ..initialRoot = 'HOME'
       ..screens = [
-        const ScreenHome(),
-        const ScreenProfile()
+        const ScreenHome(rootName: 'HOME'),
+        const ScreenProfile(rootName: 'PROFILE')
       ]
       
       
@@ -22,10 +22,10 @@ void main() {
   // run APP
   runApp(
     mainBo(isHaveLoading: true, title: 'AMOI')
-      ..initialRoot = const ScreenHome().rootName
+      ..initialRoot = 'HOME'
       ..screens = [
-        const ScreenHome(),
-        const ScreenProfile()
+        const ScreenHome(rootName: 'HOME'),
+        const ScreenProfile(rootName: 'PROFILE')
       ]
   );
 }
