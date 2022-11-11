@@ -1,34 +1,21 @@
-> Utilisation
+> importation 
+import '../bo/componantes/bo_label/bo_input.dart';
 
-> declare 
-INPUT_BO i = INPUT_BO(
-    label: 'Login',
-    width: 300,
-    isHaveSuffix: true,
-    suffixAction: () {},
-    prefixIcon: Icons.person,
-    color: Colors.yellow,
-  );
+> declare
+$INPUT inputLogin = $INPUT(
+  label: 'Login',
+  width: 300,
+  prefixIcon: Icons.person,
+  color: Colors.yellow,
+    isMotDePasse: false, // to true if Password
+);
 
-  <!-- PASSWORD -->
-    INPUT_BO inputMdp = INPUT_BO(
-    label: 'Mdp',
-    width: 300,
-    isMotDePasse: true,   << this
-    suffixAction: () {},
-    prefixIcon: Icons.key,
-    bg_color: Colors.red,
-    shadow_color: Colors.green,
-    color: Colors.deepPurple,
-  );
+> update
+funct() {
+    print('simple function');
+  }
 
-  > Set action 
-    funct() {
-        print('--------');
-    }
+inputLogin.setSuffixAction(funct);
 
-  i.setSuffixAction(funct);
-  i.setActionOnChangeValue(funct);
-
-  > get Value
-  String mdp = i.getValue();
+> getValue
+String login = inputLogin.getValue();

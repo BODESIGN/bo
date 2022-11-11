@@ -1,11 +1,8 @@
-> utilisation
+> importation 
+import '../bo/componantes/bo_label/bo_label.dart';
 
-declare :
-LABEL labelTitle = LABEL(text: 'Subtitle', textColor: Colors.red, textSize: 12);
+> declare
+$LABEL lb = $LABEL(text: 'COCO', textColor: Colors.brown, textSize: 22);
 
-parametrage :
-labelTitle.setText('RAYAN BO');
-labelTitle.setFontWeight('B');
-
-afficher widget : > child d'une widget
-labelTitle.build();
+> update
+lb.setFontWeight(bold);

@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class INPUT_BO extends StatefulWidget {
-  INPUT_BO(
+class $INPUT extends StatefulWidget {
+  $INPUT(
       {super.key,
       this.height = 60,
       this.radius = 20,
@@ -15,8 +15,7 @@ class INPUT_BO extends StatefulWidget {
       required this.label,
       required this.width,
       required this.color,
-      required this.prefixIcon,
-      required this.suffixAction});
+      required this.prefixIcon});
 
   String label;
   double height;
@@ -32,10 +31,10 @@ class INPUT_BO extends StatefulWidget {
   IconData suffix_icon = Icons.error;
 
   Function suffixAction = () {};
-
   Function onChangeValue = () {};
 
   setSuffixAction(Function action) {
+    isHaveSuffix = true;
     suffixAction = () {
       action();
     };
@@ -52,16 +51,16 @@ class INPUT_BO extends StatefulWidget {
   }
 
   TextEditingController controller = TextEditingController();
-  
+
   String getValue() {
     return controller.text;
   }
 
   @override
-  State<INPUT_BO> createState() => INPUT_STATE();
+  State<$INPUT> createState() => _boInput();
 }
 
-class INPUT_STATE extends State<INPUT_BO> {
+class _boInput extends State<$INPUT> {
   bool isObscur = false;
 
   void onChangeVuMpd() {
@@ -87,45 +86,43 @@ class INPUT_STATE extends State<INPUT_BO> {
                     padding: const EdgeInsets.all(15),
                     child: Center(
                         child: Theme(
-                      data: ThemeData(primarySwatch: widget.color),
-                      child: TextFormField(
-                          controller: widget.controller,
-                          obscureText: isObscur,
-                          style: const TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                          onChanged: (value) => {widget.onChangeValue()},
-                          decoration: InputDecoration(
-                              isDense: true,
-                              labelText: widget.label,
-                              prefixIcon: Icon(widget.prefixIcon),
-                              labelStyle: const TextStyle(
-                                  fontWeight: FontWeight.normal),
-                              alignLabelWithHint: false,
-                              contentPadding: const EdgeInsets.all(15),
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.transparent),
-                                  borderRadius: BorderRadius.circular(1)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.transparent),
-                                  borderRadius: BorderRadius.circular(0)),
-                              suffixIcon: widget.isMotDePasse
-                                  ? InkWell(
-                                      onTap: () {
-                                        onChangeVuMpd();
-                                      },
-                                      child: isObscur
-                                          ? const Icon(Icons.visibility)
-                                          : const Icon(Icons.visibility_off))
-                                  : widget.isHaveSuffix
-                                      ? InkWell(
-                                          onTap: () => {
-                                                widget.suffixAction()
-                                                // print('s')
-                                              },
-                                          child: Icon(widget.suffix_icon))
-                                      : null)),
-                    ))))));
+                            data: ThemeData(primarySwatch: widget.color),
+                            child: TextFormField(
+                                controller: widget.controller,
+                                obscureText: isObscur,
+                                style: const TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                                onChanged: (value) => {widget.onChangeValue()},
+                                decoration: InputDecoration(
+                                    isDense: true,
+                                    labelText: widget.label,
+                                    prefixIcon: Icon(widget.prefixIcon),
+                                    labelStyle: const TextStyle(
+                                        fontWeight: FontWeight.normal),
+                                    alignLabelWithHint: false,
+                                    contentPadding: const EdgeInsets.all(15),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide: const BorderSide(
+                                            color: Colors.transparent),
+                                        borderRadius: BorderRadius.circular(1)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: const BorderSide(
+                                            color: Colors.transparent),
+                                        borderRadius: BorderRadius.circular(0)),
+                                    suffixIcon: widget.isMotDePasse
+                                        ? InkWell(
+                                            onTap: () {
+                                              onChangeVuMpd();
+                                            },
+                                            child: isObscur
+                                                ? const Icon(Icons.visibility)
+                                                : const Icon(
+                                                    Icons.visibility_off))
+                                        : widget.isHaveSuffix
+                                            ? InkWell(
+                                                onTap: () =>
+                                                    {widget.suffixAction()},
+                                                child: Icon(widget.suffix_icon))
+                                            : null))))))));
   }
 }

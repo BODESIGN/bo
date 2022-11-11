@@ -6,8 +6,8 @@ import 'package:flutter/services.dart';
 
 // ====================================================================
 
-class mainBo extends StatelessWidget {
-  mainBo({super.key, required this.title, required this.isHaveLoading});
+class $MAIN extends StatelessWidget {
+  $MAIN({super.key, required this.title, required this.isHaveLoading});
 
   String title;
   bool isDebug = false;
