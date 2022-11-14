@@ -1,6 +1,9 @@
 # bo
 Code composante flutter 
 
+# demo in 
+	https://github.com/BODESIGN/bo-demo.git
+
 # todo 
 creet bat : 
 	run :
