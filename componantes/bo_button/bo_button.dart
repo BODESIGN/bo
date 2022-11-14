@@ -13,9 +13,9 @@ String textIcon = 'ICON';
 
 class $BUTTON extends StatefulWidget {
   $BUTTON({
-    required this.type,
     this.height = 55,
     required String text,
+    this.type = 'SIMPLE'
   }) {
     setText($LABEL(text: text, textColor: color, textSize: 14));
   }
@@ -23,7 +23,7 @@ class $BUTTON extends StatefulWidget {
   @override
   State<$BUTTON> createState() => _boButton();
 
-  String type = simpleButton;
+  String type;
 
   double height;
   double radius = 10;
