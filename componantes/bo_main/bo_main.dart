@@ -1,22 +1,28 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables, must_be_immutable
 
-import 'package:bo/bo/componantes/bo_loading/bo_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // ====================================================================
 
 class $MAIN extends StatelessWidget {
-  $MAIN({super.key, required this.title, required this.isHaveLoading});
+  $MAIN({super.key, required this.title});
 
   String title;
   bool isDebug = false;
   bool isDark = false;
-  bool isHaveLoading;
   String initialRoot = 'testScreen';
   List screens = [
     const ScreenTest(rootName: 'testScreen'),
   ];
+
+  Function actionOnBuilder = () {};
+
+  setActionBuilder(Function action) {
+    actionOnBuilder = () {
+      action();
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +37,11 @@ class $MAIN extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: title,
         theme: ThemeData(
-          
             pageTransitionsTheme: const PageTransitionsTheme(builders: {
               TargetPlatform.android: CupertinoPageTransitionsBuilder()
             }),
             primaryColor: Colors.black),
-        builder: isHaveLoading
-            ? loadingBo().init() // TODO: install > bo_loading
-            : null,
+        builder: actionOnBuilder(),
         initialRoute: initialRoot,
         routes: {
           for (var n = 0; n < screens.length; n++)
