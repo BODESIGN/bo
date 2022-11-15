@@ -10,3 +10,15 @@ creet bat :
 		flutter create --org com.yourdomain your_app_name
 		cd -> appli
 		git clone git.com/bo/componante
+
+
+run in cmd :
+
+dart pub global activate flutterfire_cli
+
+flutterfire configure --project=ravelonirina-rayan
+
+flutter pub add firebase_core
+
+// DB > 
+flutter pub add cloud_firestore
