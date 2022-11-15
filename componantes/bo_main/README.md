@@ -17,15 +17,18 @@ import 'package:bo/bruillon/screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  // ANDROID 
+  WidgetsFlutterBinding.ensureInitialized();
+
   // FIREBASE
 
   // run APP
   runApp(
-    mainBo(isHaveLoading: true, title: 'AMOI')
-      ..initialRoot = 'HOME'
+    
+    $MAIN(title: 'AMOI')
+      ..initialRoot = 'SE CONNECT'
       ..screens = [
-        const ScreenHome(rootName: 'HOME'),
-        const ScreenProfile(rootName: 'PROFILE')
+        screenSeconnect(rootName: 'SE CONNECT'), 
       ]
   );
 }
