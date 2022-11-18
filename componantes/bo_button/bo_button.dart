@@ -7,7 +7,7 @@ import '../bo_label/bo_label.dart';
 
 String simpleButton = 'SIMPLE';
 String textButton = 'TEXT';
-String textIcon = 'ICON';
+String iconButton = 'ICON';
 
 // ======================================
 
@@ -15,7 +15,8 @@ class $BUTTON extends StatefulWidget {
   $BUTTON({
     this.height = 55,
     required String text,
-    this.type = 'SIMPLE'
+    this.type = 'SIMPLE',
+    Color color = Colors.white,
   }) {
     setText($LABEL(text: text, textColor: color, textSize: 14));
   }
@@ -27,12 +28,13 @@ class $BUTTON extends StatefulWidget {
 
   double height;
   double radius = 10;
-  double elevation = 5;
+  double elevation = 10;
 
   late $LABEL label;
-  Color bg_color = Colors.brown;
-  Color splash_color = Colors.blue;
-  Color color = Colors.green;
+  Color bg_color = Colors.blue;
+  Color splash_color = Colors.blueAccent;
+  Color color = Colors.white;
+  Color shadow_color = Colors.grey;
 
   IconData icon = Icons.accessibility_rounded;
 
@@ -58,37 +60,35 @@ class _boButton extends State<$BUTTON> {
     // = 'SIMPLE'
     return SizedBox(
         height: widget.height,
-        child: Card(
-            elevation: widget.elevation,
-            color: Colors.transparent,
-            child: Ink(
-                decoration: BoxDecoration(
-                    color: widget.bg_color,
+        child: Ink(
+            decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(widget.radius),
+                border: Border.all(
+                    width: widget.border_width, color: widget.border_color)),
+            child: Material(
+                elevation: widget.elevation,
+                shadowColor: widget.shadow_color,
+                borderRadius: BorderRadius.circular(widget.radius),
+                color: widget.bg_color,
+                child: InkWell(
+                    splashColor: widget.splash_color,
                     borderRadius: BorderRadius.circular(widget.radius),
-                    border: Border.all(
-                        width: widget.border_width,
-                        color: widget.border_color)),
-                child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                        splashColor: widget.splash_color,
-                        borderRadius: BorderRadius.circular(widget.radius),
-                        onTap: (() => {widget.action()}),
-                        child: Center(
-                            child: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                                child: widget.label)))))));
+                    onTap: (() => {widget.action()}),
+                    child: Center(
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            child: widget.label))))));
   }
 
   // SIMPLE >> DEFAULT
   Widget textButton(BuildContext context) {
     // = 'TEXT'
-    return SizedBox(
-      height: widget.height,
-      child:
-          TextButton(onPressed: () => {widget.action()}, child: widget.label),
-    );
+    return TextButton(
+        onPressed: () {
+          widget.action();
+        },
+        child: widget.label);
   }
 
   // SIMPLE >> DEFAULT
@@ -103,12 +103,15 @@ class _boButton extends State<$BUTTON> {
             child: Ink(
                 decoration: BoxDecoration(
                     color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(widget.height / 2)),
+                    borderRadius: BorderRadius.circular(widget.radius)),
                 child: Material(
-                    color: Colors.transparent,
+                    color: widget.bg_color,
+                elevation: widget.elevation,
+                shadowColor: widget.shadow_color,
+                borderRadius: BorderRadius.circular(widget.radius),
                     child: InkWell(
                         splashColor: Colors.blue,
-                        borderRadius: BorderRadius.circular(widget.height / 2),
+                        borderRadius: BorderRadius.circular(widget.radius),
                         onTap: (() => {widget.action()}),
                         child: Center(
                             child: Icon(widget.icon, color: widget.color)))))));
