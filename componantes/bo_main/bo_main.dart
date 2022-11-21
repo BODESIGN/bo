@@ -5,6 +5,12 @@ import 'package:flutter/services.dart';
 
 // ====================================================================
 
+changeScreen(BuildContext context, String rootName) {
+  Navigator.of(context).pushNamed(rootName);
+}
+
+// ====================================================================
+
 class $MAIN extends StatelessWidget {
   $MAIN({super.key, required this.title});
 
