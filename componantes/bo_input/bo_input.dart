@@ -14,18 +14,19 @@ class $INPUT extends StatefulWidget {
       this.suffix_icon = Icons.error,
       required this.label,
       required this.width,
-      required this.color,
-      required this.prefixIcon});
+      this.prefixIcon = Icons.person});
 
   String label;
   double height;
   double width;
   double radius;
   Color bg_color;
-  MaterialColor color;
+  MaterialColor color = Colors.blue;
   Color shadow_color;
   bool isMotDePasse;
   IconData prefixIcon;
+  
+  double elevation = 10;
 
   bool isHaveSuffix = false;
   IconData suffix_icon = Icons.error;
@@ -75,7 +76,7 @@ class _boInput extends State<$INPUT> {
         width: widget.width,
         height: 60,
         child: Material(
-            elevation: 10,
+            elevation: widget.elevation,
             color: widget.bg_color,
             shadowColor: widget.shadow_color,
             borderRadius: BorderRadius.circular(widget.radius),
