@@ -9,6 +9,7 @@ class $PADDING extends StatefulWidget {
     this.top = 0,
     this.right = 0,
     this.bottom = 0,
+    this.all = 0,
     required this.child,
   });
 
@@ -16,6 +17,7 @@ class $PADDING extends StatefulWidget {
   double top;
   double right;
   double bottom;
+  double all;
   Widget child;
 
   @override
@@ -26,12 +28,14 @@ class _boPadding extends State<$PADDING> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.fromLTRB(
-          widget.left,
-          widget.top,
-          widget.right,
-          widget.bottom,
-        ),
+        padding: widget.all > 0
+            ? EdgeInsets.all(widget.all)
+            : EdgeInsets.fromLTRB(
+                widget.left,
+                widget.top,
+                widget.right,
+                widget.bottom,
+              ),
         child: widget.child);
   }
 }
