@@ -7,6 +7,7 @@ Widget pdp(String uri, Function clickOnpdp,
           ? ClipRRect(
             borderRadius: BorderRadius.circular(300),
             child: InkWell(
+              hoverColor: Colors.transparent,
               splashColor: Colors.transparent,
               onTap: (() {
                 clickOnpdp();
@@ -29,6 +30,7 @@ Widget pdp(String uri, Function clickOnpdp,
           color: Colors.white,
           child: InkWell(
               splashColor: Colors.transparent,
+              hoverColor: Colors.transparent,
               onTap: (() {
                 clickOnpdp();
               }),
