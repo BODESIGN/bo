@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 // ====================================================================
 
@@ -43,11 +44,13 @@ class $MAIN extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: title,
         theme: ThemeData(
+          useMaterial3: true,
             pageTransitionsTheme: const PageTransitionsTheme(builders: {
               TargetPlatform.android: CupertinoPageTransitionsBuilder()
             }),
             primaryColor: Colors.black),
-        builder: actionOnBuilder(),
+        // builder: actionOnBuilder(),
+        builder: EasyLoading.init(),
         initialRoute: initialRoot,
         routes: {
           for (var n = 0; n < screens.length; n++)

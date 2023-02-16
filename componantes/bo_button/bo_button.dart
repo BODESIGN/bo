@@ -8,12 +8,14 @@ import '../bo_label/bo_label.dart';
 String simpleButton = 'SIMPLE';
 String textButton = 'TEXT';
 String iconButton = 'ICON';
+String iconButtonNoBordur = 'ICON-NO-BORDURE';
 
 // ======================================
 
 class $BUTTON extends StatefulWidget {
   $BUTTON({
     this.height = 55,
+    this.radius = 10,
     required String text,
     this.type = 'SIMPLE',
     Color color = Colors.white,
@@ -27,7 +29,7 @@ class $BUTTON extends StatefulWidget {
   String type;
 
   double height;
-  double radius = 10;
+  double radius;
   double elevation = 10;
 
   late $LABEL label;
@@ -62,18 +64,23 @@ class _boButton extends State<$BUTTON> {
         height: widget.height,
         child: Ink(
             decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(widget.radius),
-                border: Border.all(
-                    width: widget.border_width, color: widget.border_color)),
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(widget.radius),
+            ),
             child: Material(
                 elevation: widget.elevation,
                 shadowColor: widget.shadow_color,
-                borderRadius: BorderRadius.circular(widget.radius),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  // borderRadius: BorderRadius.circular(widget.radius),
+                  // side: BorderSide(
+                  //     color: widget.shadow_color, width: widget.border_width),
+                ),
                 color: widget.bg_color,
                 child: InkWell(
                     splashColor: widget.splash_color,
-                    borderRadius: BorderRadius.circular(widget.radius),
+                    // borderRadius: BorderRadius.circular(widget.radius),
+
                     onTap: (() => {widget.action()}),
                     child: Center(
                         child: Padding(
@@ -100,21 +107,48 @@ class _boButton extends State<$BUTTON> {
         child: Card(
             elevation: 0,
             color: Colors.transparent,
-            child: Ink(
-                decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(widget.radius)),
-                child: Material(
-                    color: widget.bg_color,
+            child: Material(
+                color: widget.bg_color,
                 elevation: widget.elevation,
                 shadowColor: widget.shadow_color,
-                borderRadius: BorderRadius.circular(widget.radius),
-                    child: InkWell(
-                        splashColor: Colors.blue,
-                        borderRadius: BorderRadius.circular(widget.radius),
-                        onTap: (() => {widget.action()}),
-                        child: Center(
-                            child: Icon(widget.icon, color: widget.color)))))));
+                // borderRadius: BorderRadius.circular(widget.radius),
+                shape: RoundedRectangleBorder(
+                  // borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(widget.radius),
+                  side: BorderSide(
+                      color: widget.shadow_color, width: widget.border_width),
+                ),
+                child: InkWell(
+                    splashColor: Colors.blue,
+                    borderRadius: BorderRadius.circular(widget.radius),
+                    onTap: (() => {widget.action()}),
+                    child: Center(
+                        child: Icon(widget.icon, color: widget.color))))));
+  }
+
+  Widget iconButtonNoBordur(BuildContext context) {
+    // = 'ICON'
+    return SizedBox(
+        height: widget.height,
+        width: widget.height,
+        child: Card(
+            elevation: 0,
+            color: Colors.transparent,
+            child: Material(
+                color: widget.bg_color,
+                elevation: widget.elevation,
+                shadowColor: widget.shadow_color,
+                // borderRadius: BorderRadius.circular(widget.radius),
+                shape: RoundedRectangleBorder(
+                  // borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(widget.radius),
+                ),
+                child: InkWell(
+                    splashColor: Colors.blue,
+                    borderRadius: BorderRadius.circular(widget.radius),
+                    onTap: (() => {widget.action()}),
+                    child: Center(
+                        child: Icon(widget.icon, color: widget.color))))));
   }
 
   // => BUILD
@@ -124,6 +158,8 @@ class _boButton extends State<$BUTTON> {
         ? textButton(context)
         : widget.type == 'ICON'
             ? iconButton(context)
-            : simpleButton(context);
+            : widget.type == 'ICON-NO-BORDURE'
+                ? iconButtonNoBordur(context)
+                : simpleButton(context);
   }
 }

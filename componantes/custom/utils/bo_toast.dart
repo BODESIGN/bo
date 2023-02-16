@@ -6,7 +6,7 @@ class $TOAST {
     ToastContext().init(context);
   }
 
-  void show(String msg, {int? duration = 3, int? gravity = Toast.top}) {
+  show(String msg, {int? duration = 3, int? gravity = Toast.top}) {
     Toast.show(msg, duration: duration, gravity: gravity);
   }
 }

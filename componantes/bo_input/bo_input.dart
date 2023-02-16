@@ -6,7 +6,7 @@ class $INPUT extends StatefulWidget {
   $INPUT(
       {super.key,
       this.height = 60,
-      this.radius = 20,
+      this.radius = 10,
       this.bg_color = Colors.white,
       this.shadow_color = Colors.grey,
       this.isMotDePasse = false,
@@ -25,8 +25,8 @@ class $INPUT extends StatefulWidget {
   Color shadow_color;
   bool isMotDePasse;
   IconData prefixIcon;
-  
-  double elevation = 10;
+
+  double elevation = 0;
 
   bool isHaveSuffix = false;
   IconData suffix_icon = Icons.error;
@@ -71,6 +71,14 @@ class _boInput extends State<$INPUT> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    setState(() {
+      isObscur = widget.isMotDePasse;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
         width: widget.width,
@@ -79,12 +87,16 @@ class _boInput extends State<$INPUT> {
             elevation: widget.elevation,
             color: widget.bg_color,
             shadowColor: widget.shadow_color,
-            borderRadius: BorderRadius.circular(widget.radius),
+            // borderRadius: BorderRadius.circular(widget.radius),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(widget.radius),
+              side: BorderSide(color: widget.shadow_color, width: 1),
+            ),
             child: SizedBox(
                 width: double.infinity,
                 height: double.infinity,
                 child: Padding(
-                    padding: const EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(10),
                     child: Center(
                         child: Theme(
                             data: ThemeData(primarySwatch: widget.color),
